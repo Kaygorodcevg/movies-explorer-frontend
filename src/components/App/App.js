@@ -3,7 +3,11 @@ import Main from '../Main/Main';
 import Header from '../Header/Header';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
+import NotFound from '../NotFound/NotFound';
 
 import { films } from '../../utils/TestFilms';
 
@@ -12,6 +16,7 @@ function App() {
   return (
     <div className='App'>
       <Header />
+
       <Routes>
         <Route
           path='/'
@@ -34,17 +39,19 @@ function App() {
         />
         <Route
           path='/profile'
-          element={<h1>Choto budet</h1>}
+          element={<Profile />}
         />
         <Route
           path='/signin'
-          element={<h1>Choto budet</h1>}
+          element={<Login />}
         />
         <Route
           path='/signup'
-          element={<h1>Choto budet</h1>}
+          element={<Register />}
         />
+        <Route path="*"  element={<NotFound />} />
       </Routes>
+      
       <Footer />
     </div>
   );

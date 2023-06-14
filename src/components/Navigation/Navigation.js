@@ -1,5 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import Burger from '../Burger/Burger';
+// import Burger from '../Burger/Burger';
 
 function Navigation() {
   return (
@@ -11,13 +11,13 @@ function Navigation() {
           element={
             <div className='navigation__link'>
               <Link
-                to='/sign-up'
+                to='/signup'
                 className='navigation__button navigation__button_signup'
               >
                 Регистрация
               </Link>
               <Link
-                to='/sign-in'
+                to='/signin'
                 className='navigation__button navigation__button_signin'
               >
                 Войти
@@ -26,7 +26,7 @@ function Navigation() {
           }
         ></Route>
 
-        <Route
+        {/* <Route
           exact
           path='/movies'
           element={<Burger />}
@@ -36,7 +36,7 @@ function Navigation() {
           exact
           path='/saved-movies'
           element={<Burger />}
-        ></Route>
+        ></Route> */}
       </Routes>
     </section>
   );

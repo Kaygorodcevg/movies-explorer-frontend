@@ -1,10 +1,5 @@
 .logo {
-    padding: 18px 0px 18px 70px;
     width: 38px;
+    cursor: pointer;
    }
  
-   @media screen and (max-width: 1200px) {
-     .logo  {
-         padding: 18px 0 18px 30px;
-     }
-   }
