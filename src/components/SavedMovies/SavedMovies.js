@@ -1,14 +1,16 @@
-import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function SavedMovies({list}) {
-
-const filmsFilter = list.filter(item => !item.owner)
+function SavedMovies({ list }) {
+  const filmsFilter = list.filter((item) => !item.owner);
 
   return (
-    <section className="saved-movies">
+    <section className='saved-movies'>
       <SearchForm />
-      <MoviesCardList list = {filmsFilter} savedFilms = {true}/>
+      <MoviesCardList
+        list={filmsFilter}
+        savedFilms={true}
+      />
     </section>
   );
 }

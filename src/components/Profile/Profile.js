@@ -1,29 +1,27 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function Profile() {
-
-      // временные значения 
+  // временные значения
   const userName = 'Виталий';
   const [name, setName] = useState(userName);
   const [email, setEmail] = useState('pochta@yandex.ru');
 
   function handleChangeName(e) {
-    setName(e.target.value)
+    setName(e.target.value);
   }
 
   function handleChangeEmail(e) {
-    setEmail(e.target.value)
+    setEmail(e.target.value);
   }
 
-    return (
-        <section className='profile'>  
-        <h2 className="profile__title">{`Привет, ${userName}!`}</h2>
+  return (
+    <section className='profile'>
+      <h2 className='profile__title'>{`Привет, ${userName}!`}</h2>
 
-        <form
-        className='profile__form'
-      >
-        <label className='profile__label'>Имя
+      <form className='profile__form'>
+        <label className='profile__label'>
+          Имя
           <input
             id='profile__name'
             name='profile__name'
@@ -37,7 +35,8 @@ function Profile() {
           />
           <span className='profile__input-error'></span>
         </label>
-        <label className='profile__label'>E-mail
+        <label className='profile__label'>
+          E-mail
           <input
             id='profile__email'
             name='profile__email'
@@ -49,24 +48,33 @@ function Profile() {
             value={email || ''}
             onChange={handleChangeEmail}
           />
-          <span className='profile__input-error'>Пользователь с таким email уже существует.</span>
+          <span className='profile__input-error'>
+            Пользователь с таким email уже существует.
+          </span>
         </label>
       </form>
 
-      <button className='profile__button profile__button_type_change' type='submit'>Редактировать</button>
-      
-      {/* временное решение для тестирования  */}
-      <button className='profile__button profile__button_type_logout' type='submit'>
-      <Link
-          className='profile__button-link'
-          to='/'
-        >Выйти из аккаунта
-        </Link>
+      <button
+        className='profile__button profile__button_type_change hover-button'
+        type='submit'
+      >
+        Редактировать
       </button>
 
-   
-        </section>
-    );
-  }
-  
-  export default Profile;
+      {/* временное решение для тестирования  */}
+      <button
+        className='profile__button profile__button_type_logout hover-button'
+        type='submit'
+      >
+        <Link
+          className='profile__button-link'
+          to='/'
+        >
+          Выйти из аккаунта
+        </Link>
+      </button>
+    </section>
+  );
+}
+
+export default Profile;

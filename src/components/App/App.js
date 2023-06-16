@@ -12,7 +12,6 @@ import NotFound from '../NotFound/NotFound';
 import { films } from '../../utils/TestFilms';
 
 function App() {
-
   return (
     <div className='App'>
       <Header />
@@ -24,18 +23,11 @@ function App() {
         />
         <Route
           path='/movies'
-          element={
-            <Movies
-              list={films}
-            />
-          }
+          element={<Movies list={films} />}
         />
         <Route
           path='/saved-movies'
-          element={        
-            <SavedMovies
-            list={films}
-          />}
+          element={<SavedMovies list={films} />}
         />
         <Route
           path='/profile'
@@ -49,9 +41,12 @@ function App() {
           path='/signup'
           element={<Register />}
         />
-        <Route path="*"  element={<NotFound />} />
+        <Route
+          path='*'
+          element={<NotFound />}
+        />
       </Routes>
-      
+
       <Footer />
     </div>
   );

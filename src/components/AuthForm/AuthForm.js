@@ -1,16 +1,24 @@
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 
-function AuthForm({ link, buttonText, linkName, title, subtitle, isValid, linkTo, ...props }) {
+function AuthForm({
+  link,
+  buttonText,
+  linkName,
+  title,
+  subtitle,
+  isValid,
+  linkTo,
+  ...props
+}) {
   return (
     <section className='auth'>
       <Logo />
       <h1 className='auth__title'>{title}</h1>
-      <form
-        className='auth__form'
-      >
-         <>{props.children}</>
-        <label className='auth__label'>E-mail
+      <form className='auth__form'>
+        <>{props.children}</>
+        <label className='auth__label'>
+          E-mail
           <input
             id='email'
             name='email'
@@ -25,7 +33,8 @@ function AuthForm({ link, buttonText, linkName, title, subtitle, isValid, linkTo
           />
           <span className='auth__input-error'></span>
         </label>
-        <label className='auth__label'>Пароль
+        <label className='auth__label'>
+          Пароль
           <input
             id='password'
             name='password'
@@ -42,23 +51,26 @@ function AuthForm({ link, buttonText, linkName, title, subtitle, isValid, linkTo
         </label>
       </form>
 
-   {/* временное решение для тестирования  */}
-    <button className='auth__submit-button'
-          type="submit">
-               <Link
+      {/* временное решение для тестирования  */}
+      <button
+        className='auth__submit-button hover-button'
+        type='submit'
+      >
+        <Link
           className='auth__button-link'
           to={linkTo}
-        >{buttonText}
+        >
+          {buttonText}
         </Link>
-          </button>
+      </button>
 
       <p className='auth__text'>
-      {subtitle}
+        {subtitle}
         <Link
-          className='auth__link'
+          className='auth__link hover-link'
           to={link}
         >
-        {linkName}
+          {linkName}
         </Link>
       </p>
     </section>

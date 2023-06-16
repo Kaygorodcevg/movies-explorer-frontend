@@ -31,15 +31,12 @@
   .movies-list__table {
     grid-column-gap: 30px;
     grid-row-gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 400px) {
   .movies-list__table {
-    /* grid-column-gap: 14px; */
     padding-top: 40px;
     grid-row-gap: 14px;
-    grid-template-columns: repeat(auto-fill, minmax(237px, 1fr));
   }
 }

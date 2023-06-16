@@ -10,7 +10,7 @@ function Logo() {
       <img
         src={headerLogo}
         alt='Логотип'
-        className='logo__img'
+        className='logo__img hover-button'
       ></img>
     </Link>
   );

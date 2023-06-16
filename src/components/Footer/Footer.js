@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, NavLink } from 'react-router-dom';
 
 function Footer() {
   return (
@@ -15,24 +15,24 @@ function Footer() {
               <p className='footer__year'> &copy; {new Date().getFullYear()}</p>
               <ul className='footer__links'>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://praktikum.yandex.ru'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://praktikum.yandex.ru'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Яндекс.Практикум
-                  </a>
+                  </NavLink>
                 </li>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://github.com/Kaygorodcevg'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://github.com/Kaygorodcevg'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Github
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -52,24 +52,24 @@ function Footer() {
               <p className='footer__year'> &copy; 2023</p>
               <ul className='footer__links'>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://praktikum.yandex.ru'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://praktikum.yandex.ru'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Яндекс.Практикум
-                  </a>
+                  </NavLink>
                 </li>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://github.com/Kaygorodcevg'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://github.com/Kaygorodcevg'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Github
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -89,24 +89,24 @@ function Footer() {
               <p className='footer__year'> &copy; 2023</p>
               <ul className='footer__links'>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://praktikum.yandex.ru'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://praktikum.yandex.ru'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Яндекс.Практикум
-                  </a>
+                  </NavLink>
                 </li>
                 <li className='footer__item'>
-                  <a
-                    className='footer__link'
-                    href='https://github.com/Kaygorodcevg'
+                  <NavLink
+                    className='footer__link hover-link'
+                    to='https://github.com/Kaygorodcevg'
                     target='_blank'
                     rel='noreferrer'
                   >
                     Github
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>

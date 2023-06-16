@@ -64,7 +64,7 @@ export const films = [
     {
       duration: 107,
       image: film8,
-      nameRU: 'Gimme Danger: История Игги и The Stooge...',
+      nameRU: 'Gimme Danger: История Игги',
       owner: 0,
       id: 1008,
     },

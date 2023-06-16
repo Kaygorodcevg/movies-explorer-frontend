@@ -1,23 +1,27 @@
-import MoviesCard from "../MoviesCard/MoviesCard";
+import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({list}) {
+function MoviesCardList({ list, savedFilmss }) {
+  return (
+    <section className='movies-list'>
+      <div className='movies-list__table'>
+        {list.map((item) => (
+          <MoviesCard
+            key={item.id}
+            card={item}
+            savedFilms={savedFilmss}
+          />
+        ))}
+      </div>
 
-    return (
-        <section className="movies-list">
+      <button
+        className='movies-list__more-btn hover-button'
+        type='button'
+        aria-label='Показать еще'
+      >
+        Ещё
+      </button>
+    </section>
+  );
+}
 
-            <div className="movies-list__table">
-            {list.map((item) => (
-              <MoviesCard
-                key={item.id}
-                card={item}
-              />
-            ))}
-            </div>
-
-            <button className='movies-list__more-btn' type='button' aria-label='Показать еще'>Ещё</button>
-  
-      </section>
-    );
-  }
-    
-  export default MoviesCardList;
+export default MoviesCardList;

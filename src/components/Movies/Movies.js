@@ -1,11 +1,11 @@
-import SearchForm from "../SearchForm/SearchForm";
-import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-function Movies({list}) {
+function Movies({ list }) {
   return (
-    <section className="movies">
+    <section className='movies'>
       <SearchForm />
-      <MoviesCardList list = {list} />
+      <MoviesCardList list={list} />
     </section>
   );
 }
