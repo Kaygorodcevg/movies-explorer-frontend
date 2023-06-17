@@ -5,13 +5,13 @@ function SavedMovies({ list }) {
   const filmsFilter = list.filter((item) => !item.owner);
 
   return (
-    <section className='saved-movies'>
+    <main className='saved-movies'>
       <SearchForm />
       <MoviesCardList
         list={filmsFilter}
         savedFilms={true}
       />
-    </section>
+    </main>
   );
 }
 

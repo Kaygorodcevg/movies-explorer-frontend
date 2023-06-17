@@ -4,22 +4,22 @@ import photo from '../../images/fVwssP9qdEk.jpg';
 function AboutMe() {
   return (
     <section id = 'student' className='student'>
-      <h2 className='student-section__title'>Студент</h2>
+      <h2 className='student__title'>Студент</h2>
 
-      <div className='student__about-section'>
-        <div className='student__about-section_text'>
-          <h3 className='student__about-section__title'>Глеб</h3>
-          <p className='student__about-section__subtitle'>
+      <div className='about-section'>
+        <div className='about-section__text'>
+          <h3 className='about-section__title'>Глеб</h3>
+          <p className='about-section__subtitle'>
             Фронтенд-разработчик, 29 лет
           </p>
-          <p className='student__about-section__description'>
+          <p className='about-section__description'>
             Я родился и живу в Перми, закончил химико-технологический факультет.
             Сейчас работаю менеджером ИТ проектов. В ходе работы возник интерес
             самому научится писать код и делать приложения. Больше всего
             привлекла web-разработка из-за ее широкого спектра применения.
           </p>
           <NavLink
-            className='student__about-section__link hover-link'
+            className='about-section__link hover-link'
             to='https://github.com/Kaygorodcevg'
             target='_blank'
             rel='noreferrer'
@@ -28,9 +28,9 @@ function AboutMe() {
           </NavLink>
         </div>
 
-        <div className='student__photo-section'>
+        <div className='about-section__photo-section'>
           <img
-            className='student__photo-section_photo'
+            className='about-section__photo'
             src={photo}
             alt='Фото'
           />

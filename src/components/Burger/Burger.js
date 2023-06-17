@@ -14,8 +14,8 @@ function Burger() {
       <button
         className={
           menuActive
-            ? 'burger__btn_close hover-button'
-            : 'burger__btn hover-button'
+            ? 'menu__burger-btn_close hover-button'
+            : 'menu__burger-btn hover-button'
         }
         onClick={handleClickMenu}
       ></button>
@@ -25,23 +25,23 @@ function Burger() {
       >
         <NavLink
           to='/'
-          className='menu__link hover-link'
+          className='menu__main hover-link'
           onClick={handleClickMenu}
         >
           Главная
         </NavLink>
 
-        <div className='menu__link_type_films'>
+        <div className='menu__films'>
           <NavLink
             to='/movies'
-            className='films__link hover-link'
+            className='menu__films-all hover-link'
             onClick={handleClickMenu}
           >
             Фильмы
           </NavLink>
           <NavLink
             to='/saved-movies'
-            className='saved-films__link hover-link'
+            className='menu__films-saved hover-link'
             onClick={handleClickMenu}
           >
             Сохраненные фильмы
@@ -50,13 +50,13 @@ function Burger() {
 
         <NavLink
           to='/profile'
-          className='account__link hover-link'
+          className='menu__account hover-link'
           onClick={handleClickMenu}
         >
           Аккаунт
-          <div className='account__icon_wrapper'>
+          <div className='menu__account-wrapper'>
             <img
-              className='account__icon'
+              className='menu__account-icon'
               src={profileLogo}
               alt='Логотип'
             ></img>

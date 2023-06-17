@@ -7,45 +7,45 @@ function Portfolio() {
       <h2 className='portfolio__title'>Портфолио</h2>
       <ul className='portfolio__projects'>
         <li className='portfolio__project'>
-          <p className='portfolio__project_title'>Статичный сайт</p>
           <NavLink
-            className='portfolio__project_link'
+            className='portfolio__link'
             to='https://github.com/Kaygorodcevg/how-to-learn'
             target='_blank'
             rel='noreferrer'
           >
+            <p className='portfolio__subtitle'>Статичный сайт</p>
             <img
-              className='portfolio__project_picture hover-link'
+              className='portfolio__picture hover-link'
               src={arrow}
               alt='Ссылка на проект со статичным сайтом'
             />
           </NavLink>
         </li>
         <li className='portfolio__project'>
-          <p className='portfolio__project_title'>Адаптивный сайт</p>
           <NavLink
-            className='portfolio__project_link'
+            className='portfolio__link'
             to='https://github.com/Kaygorodcevg/russian-travel'
             target='_blank'
             rel='noreferrer'
           >
+            <p className='portfolio__subtitle'>Адаптивный сайт</p>
             <img
-              className='portfolio__project_picture hover-link'
+              className='portfolio__picture hover-link'
               src={arrow}
               alt='Ссылка на проект с адаптивным сайтом'
             />
           </NavLink>
         </li>
         <li className='portfolio__project'>
-          <p className='portfolio__project_title'>Одностраничное приложение</p>
           <NavLink
-            className='portfolio__project_link '
+            className='portfolio__link '
             to='https://github.com/Kaygorodcevg/react-mesto-api-full-gha'
             target='_blank'
             rel='noreferrer'
           >
+            <p className='portfolio__subtitle'>Одностраничное приложение</p>
             <img
-              className='portfolio__project_picture hover-link'
+              className='portfolio__picture hover-link'
               src={arrow}
               alt='Ссылка на проект с одностраничным приложением'
             />

@@ -1,4 +1,4 @@
-import film1 from '../images/film1.jpg';
+import film1 from '../images/film2.jpg';
 import film2 from '../images/film2.jpg';
 import film3 from '../images/film3.jpg';
 import film4 from '../images/film4.jpg';
@@ -9,7 +9,7 @@ import film8 from '../images/film8.jpg';
 import film9 from '../images/film9.jpg';
 import film10 from '../images/film10.jpg';
 import film11 from '../images/film11.jpg';
-import film12 from '../images/film12.jpg';
+import film12 from '../images/film11.jpg';
 
 export const films = [
     {

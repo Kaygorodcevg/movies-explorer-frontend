@@ -1,9 +1,8 @@
 .student {
   box-sizing: border-box;
-  /* min-height: 1079px; */
 }
 
-.student-section__title {
+.student__title {
   font-weight: 400;
   font-size: 22px;
   line-height: 27px;
@@ -13,18 +12,18 @@
   margin: 0 70px 0 70px;
 }
 
-.student__about-section {
+.about-section {
   display: flex;
   justify-content: space-between;
   padding-top: 66px;
 }
 
-.student__about-section_text {
+.about-section__text {
   max-width: 600px;
   margin: 0 70px 0 70px;
 }
 
-.student__about-section__title {
+.about-section__title {
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -32,7 +31,7 @@
   margin: 0;
 }
 
-.student__about-section__subtitle {
+.about-section__subtitle {
   font-weight: 500;
   font-size: 18px;
   line-height: 20px;
@@ -40,7 +39,7 @@
   margin: 18px 0 26px 0;
 }
 
-.student__about-section__description {
+.about-section__description {
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
@@ -48,7 +47,7 @@
   margin-bottom: 99px;
 }
 
-.student__about-section__link {
+.about-section__link {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -56,50 +55,54 @@
   color: #000;
 }
 
-.student__photo-section {
+.about-section__photo-section {
   margin-right: 70px;
-}
-
-.student__photo-section_photo {
   border-radius: 10px;
+  box-sizing: border-box;
   max-width: 270px;
   height: 327px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.about-section__photo {
+  border-radius: 10px;
   object-fit: contain;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1050px) {
-  .student-section__title {
+  .student__title {
     padding-top: 90px;
     margin: 0 50px 0 50px;
   }
 
-  .student__about-section_text {
+  .about-section__text {
     max-width: 364px;
     margin: 0 50px 0 50px;
   }
 
-  .student__about-section__title {
+  .about-section__title {
     font-size: 40px;
     line-height: 40px;
   }
 
-  .student__about-section__subtitle {
+  .about-section__subtitle {
     font-size: 12px;
     line-height: 18px;
     margin: 16px 0 20px 0;
   }
 
-  .student__about-section__description {
+  .about-section__description {
     font-size: 12px;
     line-height: 18px;
     margin-bottom: 87px;
   }
 
-  .student__photo-section {
+  .about-section__photo-section {
     margin-right: 50px;
-  }
-
-  .student__photo-section_photo {
     max-width: 255px;
     height: 307px;
   }
@@ -111,49 +114,46 @@
     flex-direction: column;
   }
 
-  .student-section__title {
+  .student__title {
     font-size: 18px;
     line-height: 22px;
     padding: 70px 0 28px 0;
     margin: 0 14px 0 14px;
   }
 
-  .student__about-section {
+  .about-section {
     flex-direction: column;
     padding-top: 60px;
   }
 
-  .student__about-section_text {
+  .about-section__text {
     max-width: 292px;
     margin: 0 14px 0 14px;
     order: 2;
   }
 
-  .student__about-section__title {
+  .about-section__title {
     font-size: 30px;
     line-height: 36px;
   }
 
-  .student__about-section__subtitle {
+  .about-section__subtitle {
     font-size: 11px;
     line-height: 16px;
     margin: 20px 0 20px 0;
   }
 
-  .student__about-section__description {
+  .about-section__description {
     font-size: 11px;
     line-height: 16px;
     margin-bottom: 40px;
   }
 
-  .student__photo-section {
+  .about-section__photo-section {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 14px 40px 14px;
-  }
-
-  .student__photo-section_photo {
     max-width: 292px;
     height: 352px;
   }

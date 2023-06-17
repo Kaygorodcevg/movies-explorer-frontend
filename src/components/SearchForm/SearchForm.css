@@ -33,9 +33,10 @@
 
 .search-form__button {
   box-sizing: border-box;
-  width: 44px;
+  min-width: 44px;
   height: 44px;
   background-image: url(../../images/search_buttom.png);
+  background-color: transparent;
   background-position: center;
   background-repeat: no-repeat;
   border: none;

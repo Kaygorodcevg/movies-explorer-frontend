@@ -6,7 +6,7 @@
 
 .movies-list__table {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(281px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(281px, 1fr));
   grid-column-gap: 24px;
   grid-row-gap: 37px;
   box-sizing: border-box;

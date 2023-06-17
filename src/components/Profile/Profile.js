@@ -16,7 +16,7 @@ function Profile() {
   }
 
   return (
-    <section className='profile'>
+    <main className='profile'>
       <h2 className='profile__title'>{`Привет, ${userName}!`}</h2>
 
       <form className='profile__form'>
@@ -73,7 +73,7 @@ function Profile() {
           Выйти из аккаунта
         </Link>
       </button>
-    </section>
+    </main>
   );
 }
 

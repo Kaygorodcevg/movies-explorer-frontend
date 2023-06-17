@@ -14,8 +14,8 @@
   margin: 0;
 }
 
-.burger__btn {
-  background-image: url(../../images/burger.png);
+.menu__burger-btn {
+  background-image: url(../../images/burger_icon.svg);
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,8 +30,8 @@
   display: none;
 }
 
-.burger__btn_close {
-  background-image: url(../../images/close_btn.png);
+.menu__burger-btn_close {
+  background-image: url(../../images/close_icon.svg);
   background-color: #fff;
   background-position: center;
   background-repeat: no-repeat;
@@ -46,7 +46,7 @@
   display: none;
 }
 
-.menu__link {
+.menu__main {
   font-weight: 500;
   font-size: 18px;
   line-height: 22px;
@@ -57,14 +57,14 @@
   margin: 0;
 }
 
-.menu__link_type_films {
+.menu__films {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 28px 364px 28px 426px;
 }
 
-.films__link {
+.menu__films-all {
   font-weight: 500;
   font-size: 13px;
   line-height: 18px;
@@ -73,7 +73,7 @@
   padding-right: 16px;
 }
 
-.saved-films__link {
+.menu__films-saved {
   font-weight: 400;
   font-size: 13px;
   line-height: 18px;
@@ -81,7 +81,7 @@
   text-decoration: none;
 }
 
-.account__link {
+.menu__account {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +94,7 @@
   text-decoration: none;
 }
 
-.account__icon_wrapper {
+.menu__account-wrapper {
   display: flex;
   background-color: #f9f9f9;
   width: 24px;
@@ -103,12 +103,22 @@
   border-radius: 4px;
 }
 
-.account__icon {
+.menu__account-icon {
   border: none;
   margin: auto;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1145px) {
+  .menu__films {
+    padding: 28px 0 28px 100px;
+  }
+
+  .menu__account {
+    margin: 21px 30px 23px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
   .menu {
     padding: 15px 30px 15px 0;
     justify-content: flex-end;
@@ -147,12 +157,12 @@
     right: 0;
   }
 
-  .burger__btn {
+  .menu__burger-btn {
     display: flex;
   }
 
-  .burger__btn_close {
-    background-image: url(../../images/close_btn.png);
+  .menu__burger-btn_close {
+    background-image: url(../../images/close_icon.svg);
     background-color: #fff;
     background-position: center;
     background-repeat: no-repeat;
@@ -169,12 +179,12 @@
     padding: 0;
   }
 
-  .menu__link {
+  .menu__main {
     display: flex;
     margin: 159px 0 22px 0;
   }
 
-  .films__link {
+  .menu__films-all {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
@@ -182,13 +192,13 @@
     margin: 0 0 22px;
   }
 
-  .saved-films__link {
+  .menu__films-saved {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
   }
 
-  .menu__link_type_films {
+  .menu__films {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,7 +206,7 @@
     padding: 0;
   }
 
-  .account__link {
+  .menu__account {
     padding: 0;
     margin: auto 0 92px 0;
   }
@@ -207,40 +217,40 @@
     padding: 15px 14px 16px 0;
   }
 
-  .burger__btn {
+  .menu__burger-btn {
     width: 40px;
     height: 43px;
   }
 
-  .menu__link {
+  .menu__main {
     margin: 144px 0 0 0;
   }
 
-  .burger__btn_close {
+  .menu__burger-btn_close {
     top: 13px;
     right: 13px;
   }
 
-  .menu__link_type_films {
+  .menu__films {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 24px 0 24px 0;
   }
 
-  .films__link {
+  .menu__films-all {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
   }
 
-  .saved-films__link {
+  .menu__films-saved {
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
   }
 
-  .account__link {
+  .menu__account {
     padding: 0;
     margin: auto 0 48px 0;
   }

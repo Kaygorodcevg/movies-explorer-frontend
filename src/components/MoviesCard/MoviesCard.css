@@ -25,6 +25,12 @@
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
+  margin: 0 21px 0 0;
+  display: flex;
+  align-items: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movie__like {
@@ -56,34 +62,26 @@
   font-size: 11px;
   line-height: 13px;
   color: #a0a0a0;
-  margin: 0;
-  padding: 0 0 16px 16px;
+  margin: 0 0 16px 16px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
+  .movie__pic {
+    height: 190px;
+  }
+
   .movie {
     max-height: 262px;
   }
-
-  .movie__header {
-    padding: 8px 14px 7px 14px;
-  }
-
-  .movie__duration {
-    padding: 0 0 14px 14px;
-  }
 }
 
-@media screen and (max-width: 651px) {
-  .movie {
-    max-height: 262px;
-    max-width: 339px;
-  }
-}
-
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 550px) {
   .movie {
     max-height: 237px;
+  }
+
+  .movie__pic {
+    height: 168px;
   }
 
   .movie__header {

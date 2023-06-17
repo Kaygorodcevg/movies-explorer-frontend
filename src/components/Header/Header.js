@@ -10,10 +10,10 @@ function Header() {
         exact
         path='/'
         element={
-          <section className='header'>
+          <header className='header'>
             <Logo />
             <Navigation />
-          </section>
+          </header>
         }
       ></Route>
 
@@ -21,10 +21,10 @@ function Header() {
         exact
         path='/movies/*'
         element={
-          <section className='header'>
+          <header className='header'>
             <Logo />
             <Burger />
-          </section>
+          </header>
         }
       ></Route>
 
@@ -32,10 +32,10 @@ function Header() {
         exact
         path='/saved-movies/*'
         element={
-          <section className='header'>
+          <header className='header'>
             <Logo />
             <Burger />
-          </section>
+          </header>
         }
       ></Route>
 
@@ -43,10 +43,10 @@ function Header() {
         exact
         path='/profile'
         element={
-          <section className='header'>
+          <header className='header'>
             <Logo />
             <Burger />
-          </section>
+          </header>
         }
       ></Route>
     </Routes>

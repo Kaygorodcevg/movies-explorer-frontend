@@ -7,7 +7,7 @@ function Footer() {
         exact
         path='/'
         element={
-          <section className='footer'>
+          <footer className='footer'>
             <h4 className='footer__title'>
               Учебный проект Яндекс.Практикум х BeatFilm.
             </h4>
@@ -36,7 +36,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-          </section>
+          </footer>
         }
       ></Route>
 
@@ -44,7 +44,7 @@ function Footer() {
         exact
         path='/movies/*'
         element={
-          <section className='footer'>
+          <footer className='footer'>
             <h4 className='footer__title'>
               Учебный проект Яндекс.Практикум х BeatFilm.
             </h4>
@@ -73,7 +73,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-          </section>
+          </footer>
         }
       ></Route>
 
@@ -81,7 +81,7 @@ function Footer() {
         exact
         path='/saved-movies/*'
         element={
-          <section className='footer'>
+          <footer className='footer'>
             <h4 className='footer__title'>
               Учебный проект Яндекс.Практикум х BeatFilm.
             </h4>
@@ -110,7 +110,7 @@ function Footer() {
                 </li>
               </ul>
             </div>
-          </section>
+          </footer>
         }
       ></Route>
     </Routes>
