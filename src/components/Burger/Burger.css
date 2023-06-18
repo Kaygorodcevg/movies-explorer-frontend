@@ -1,0 +1,257 @@
+.menu {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.menu__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+}
+
+.menu__burger-btn {
+  background-image: url(../../images/burger_icon.svg);
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  z-index: 1;
+  right: -600px;
+  transition: right 0.5s ease-in;
+  cursor: pointer;
+  display: none;
+}
+
+.menu__burger-btn_close {
+  background-image: url(../../images/close_icon.svg);
+  background-color: #fff;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  border: none;
+  box-sizing: content-box;
+  z-index: 4;
+  display: none;
+}
+
+.menu__main {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  display: none;
+  margin: 0;
+}
+
+.menu__films {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 364px 28px 426px;
+}
+
+.menu__films-all {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000;
+  text-decoration: none;
+  padding-right: 16px;
+}
+
+.menu__films-saved {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu__account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 21px 70px 23px 0;
+  width: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000;
+  text-decoration: none;
+}
+
+.menu__account-wrapper {
+  display: flex;
+  background-color: #f9f9f9;
+  width: 24px;
+  height: 30px;
+  margin-left: 17px;
+  border-radius: 4px;
+}
+
+.menu__account-icon {
+  border: none;
+  margin: auto;
+}
+
+@media screen and (max-width: 1145px) {
+  .menu__films {
+    padding: 28px 0 28px 100px;
+  }
+
+  .menu__account {
+    margin: 21px 30px 23px 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    padding: 15px 30px 15px 0;
+    justify-content: flex-end;
+  }
+
+  .menu__active {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    align-items: flex-end;
+    flex-grow: 1;
+    z-index: 2;
+    transition: background-color 0.7s ease-in;
+  }
+
+  .menu__content {
+    display: flex;
+    position: fixed;
+    right: -700px;
+    top: 0;
+    bottom: 0;
+    max-width: 520px;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .menu__content_open {
+    display: flex;
+    right: 0;
+  }
+
+  .menu__burger-btn {
+    display: flex;
+  }
+
+  .menu__burger-btn_close {
+    background-image: url(../../images/close_icon.svg);
+    background-color: #fff;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    border: none;
+    box-sizing: content-box;
+    z-index: 4;
+    display: flex;
+    border: none;
+    padding: 0;
+  }
+
+  .menu__main {
+    display: flex;
+    margin: 159px 0 22px 0;
+  }
+
+  .menu__films-all {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 0;
+    margin: 0 0 22px;
+  }
+
+  .menu__films-saved {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .menu__films {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .menu__account {
+    padding: 0;
+    margin: auto 0 92px 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .menu {
+    padding: 15px 14px 16px 0;
+  }
+
+  .menu__burger-btn {
+    width: 40px;
+    height: 43px;
+  }
+
+  .menu__main {
+    margin: 144px 0 0 0;
+  }
+
+  .menu__burger-btn_close {
+    top: 13px;
+    right: 13px;
+  }
+
+  .menu__films {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0 24px 0;
+  }
+
+  .menu__films-all {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .menu__films-saved {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .menu__account {
+    padding: 0;
+    margin: auto 0 48px 0;
+  }
+}
