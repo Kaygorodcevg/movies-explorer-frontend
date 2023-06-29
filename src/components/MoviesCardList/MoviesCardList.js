@@ -1,6 +1,8 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList({ list, savedFilmss }) {
+function MoviesCardList({ list }) {
+
+
   return (
     <section className='movies-list'>
       <div className='movies-list__table'>
@@ -8,7 +10,7 @@ function MoviesCardList({ list, savedFilmss }) {
           <MoviesCard
             key={item.id}
             card={item}
-            savedFilms={savedFilmss}
+            // savedFilms={props.savedMoviesPage}
           />
         ))}
       </div>

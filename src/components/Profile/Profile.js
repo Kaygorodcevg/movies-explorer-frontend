@@ -52,7 +52,7 @@ function Profile() {
             Пользователь с таким email уже существует.
           </span>
         </label>
-      </form>
+  
 
       <button
         className='profile__button profile__button_type_change hover-button'
@@ -73,6 +73,7 @@ function Profile() {
           Выйти из аккаунта
         </Link>
       </button>
+      </form>
     </main>
   );
 }

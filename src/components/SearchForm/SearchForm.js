@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function SearchForm() {
-  const [checked, setChecked] = useState(false);
+function SearchForm({onSearchClick, shortFilms, onCheckbox }) {
+  const [value, setValue] = useState('');
 
-  const handleChange = () => {
-    setChecked(!checked);
-  };
+  function handleChangeValue(e) {
+    setValue(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSearchClick(value);
+  } 
+
+  useEffect(() => {
+    const input = localStorage.getItem('searchQuery');
+    if(input){
+      setValue(input);
+    }
+  }, [])
+
 
   return (
     <section className='search-form'>
-      <form className='search-form__form'>
+      <form className='search-form__form' onSubmit={handleSubmit}>
         <input
           type='text'
           placeholder='Фильм'
           className='search-form__input'
           required
+          value={value}
+          onChange={handleChangeValue}
         />
         <button className='search-form__button hover-button'></button>
       </form>
@@ -22,9 +37,10 @@ function SearchForm() {
       <label className='search-form__filter'>
         <input
           type='checkbox'
+          name='shortFilms'
           className='search-form__checkbox'
-          checked={checked}
-          onChange={handleChange}
+          checked={ shortFilms } 
+          onChange={onCheckbox}
         />
         <span
           className='search-form__checkbox-visible'

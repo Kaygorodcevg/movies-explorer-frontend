@@ -1,22 +1,62 @@
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
+import { useFormAndValidation } from '../../hooks/useFormAndValidation';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 function AuthForm({
-  link,
+  name,
   buttonText,
   linkName,
   title,
   subtitle,
-  isValid,
   linkTo,
-  ...props
+  onSubmit,
+  message,
 }) {
+  const { values, errors, isValid, handleChange } = useFormAndValidation();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    name === 'signup'
+      ? onSubmit(values.name, values.email, values.password)
+      : onSubmit(values.email, values.password);
+  }
+
   return (
     <section className='auth'>
       <Logo />
       <h1 className='auth__title'>{title}</h1>
-      <form className='auth__form'>
-        <>{props.children}</>
+      <form
+        className='auth__form'
+        onSubmit={handleSubmit}
+        // isValid={isValid}
+        // message={message}
+      >
+        {name === 'signup' && (
+          <label className='auth__label'>
+            Имя
+            <input
+              id='name'
+              name='name'
+              type='text'
+              className='auth__input'
+              placeholder='Введите имя'
+              minLength='2'
+              maxLength='40'
+              required
+              pattern='^[A-Za-zА-Яа-яЁё\\-\\s]+$'
+              value={values.name || ''}
+              onChange={handleChange}
+            />
+            <span className='auth__input-error'>
+              {' '}
+              {errors.name
+                ? `Поле должно быть заполнено и может содержать только латиницу,
+                кириллицу, пробел или дефис`
+                : ''}
+            </span>
+          </label>
+        )}
         <label className='auth__label'>
           E-mail
           <input
@@ -28,10 +68,10 @@ function AuthForm({
             minLength='8'
             maxLength='40'
             required
-            // value={email}
-            // onChange={handleChange}
+            value={values.email || ''}
+            onChange={handleChange}
           />
-          <span className='auth__input-error'></span>
+          <span className='auth__input-error'>{errors.email || ''} </span>
         </label>
         <label className='auth__label'>
           Пароль
@@ -44,35 +84,36 @@ function AuthForm({
             minLength='4'
             maxLength='40'
             required
-            // value={password}
-            // onChange={handleChange}
+            value={values.password || ''}
+            onChange={handleChange}
           />
-          <span className='auth__input-error'>Что-то пошло не так...</span>
+          <span className='auth__input-error'>{errors.password || ''}</span>
         </label>
-      </form>
 
-      {/* временное решение для тестирования  */}
-      <button
-        className='auth__submit-button hover-button'
-        type='submit'
-      >
-        <Link
-          className='auth__button-link'
-          to={linkTo}
+        <ErrorMessage
+          place={name}
+          message={message}
+        />
+        <button
+          className={`auth__submit-button ${
+            isValid ? 'hover-button' : 'auth__submit-button_disabled'
+          }`}
+          type='submit'
+          disabled={!isValid}
         >
           {buttonText}
-        </Link>
-      </button>
+        </button>
 
-      <p className='auth__text'>
-        {subtitle}
-        <Link
-          className='auth__link hover-link'
-          to={link}
-        >
-          {linkName}
-        </Link>
-      </p>
+        <p className='auth__text'>
+          {subtitle}
+          <Link
+            className='auth__link hover-link'
+            to={linkTo}
+          >
+            {linkName}
+          </Link>
+        </p>
+      </form>
     </section>
   );
 }

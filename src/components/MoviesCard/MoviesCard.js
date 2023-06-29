@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-function MoviesCard(props) {
+import { MOVIE_URL } from "../../utils/const";
+
+function MoviesCard({card}) {
   const location = useLocation();
 
   function getTimeFromMins(mins) {
@@ -24,12 +26,15 @@ function MoviesCard(props) {
     <section className='movie'>
       <img
         className='movie__pic'
-        src={props.card.image}
+        src={
+          location.pathname === "/movies"
+            ? `${MOVIE_URL}${card.image.url}`
+            : `${card.image}`
+        }
         alt='Фильм'
       />
       <div className='movie__header'>
-        <h2 className='movie__title'>{props.card.nameRU}</h2>
-
+        <h2 className='movie__title'>{card.nameRU}</h2>
         {location.pathname === '/movies' ? (
           <button
             className={cardLikeButtonClassName}
@@ -43,7 +48,7 @@ function MoviesCard(props) {
           ></button>
         )}
       </div>
-      <p className='movie__duration'>{getTimeFromMins(props.card.duration)}</p>
+      <p className='movie__duration'>{getTimeFromMins(card.duration)}</p>
     </section>
   );
 }

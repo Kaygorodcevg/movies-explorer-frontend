@@ -6,7 +6,10 @@
 
 .movies-list__table {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(281px, 1fr));
+  /* grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: minmax(min-content, max-content); */
+  grid-template-columns: repeat(auto-fit, 364px);
+  /* grid-template-columns: repeat(auto-fit, minmax(281px, 1fr)); */
   grid-column-gap: 24px;
   grid-row-gap: 37px;
   box-sizing: border-box;
@@ -29,6 +32,7 @@
 
 @media screen and (max-width: 1200px) {
   .movies-list__table {
+    grid-template-columns: repeat(auto-fit, 339px);
     grid-column-gap: 30px;
     grid-row-gap: 30px;
   }
@@ -36,6 +40,7 @@
 
 @media screen and (max-width: 400px) {
   .movies-list__table {
+    grid-template-columns: repeat(auto-fit, 300px);
     padding-top: 40px;
     grid-row-gap: 14px;
   }
