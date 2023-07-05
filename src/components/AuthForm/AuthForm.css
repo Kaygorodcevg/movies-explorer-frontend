@@ -28,12 +28,10 @@
   color: #a0a0a0;
   position: relative;
   margin-bottom: 30px;
-  /* padding-bottom: 10px; */
 }
 
-.auth__label:last-of-type{
+.auth__label:last-of-type {
   margin-bottom: 182px;
-  
 }
 
 .auth__input {
@@ -64,7 +62,6 @@
 .auth__input-error {
   position: absolute;
   left: 0;
-  /* top: 46px; */
   bottom: -30px;
   color: #ee3465;
   font-weight: 400;
@@ -81,11 +78,10 @@
   font-size: 14px;
   line-height: 17px;
   color: #ffffff;
-  /* margin-top: 182px; */
 }
 
-.auth__submit-button_disabled{
-  opacity: .2;
+.auth__submit-button_disabled {
+  opacity: 0.2;
   cursor: default;
 }
 
@@ -122,8 +118,12 @@
     font-weight: 400;
   }
 
+  .auth__label:last-of-type {
+    margin-bottom: 182px;
+  }
+
   .auth__submit-button {
-    margin-top: 182px;
+    margin-top: 0;
   }
 
   .auth__text {
@@ -147,11 +147,15 @@
     width: 260px;
   }
 
+  .auth__label:last-of-type {
+    margin-bottom: 272px;
+  }
+
   .auth__submit-button {
     width: 260px;
     font-size: 12px;
     line-height: 15px;
-    margin-top: 272px;
+    margin-top: 0;
   }
 
   .auth__text {

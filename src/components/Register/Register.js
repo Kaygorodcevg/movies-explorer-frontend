@@ -1,11 +1,12 @@
 import AuthForm from '../AuthForm/AuthForm';
-import { Navigate } from "react-router-dom";
+import { Navigate } from 'react-router-dom';
 
 function Register({ onRegister, loggedIn, message }) {
-
-
   return loggedIn ? (
-    <Navigate to="/" replace />
+    <Navigate
+      to='/movies'
+      replace
+    />
   ) : (
     <AuthForm
       name='signup'
@@ -15,7 +16,7 @@ function Register({ onRegister, loggedIn, message }) {
       subtitle='Уже зарегистрированы?'
       linkName='Войти'
       onSubmit={onRegister}
-      // message={message}
+      message={message}
     ></AuthForm>
   );
 }

@@ -3,7 +3,7 @@ import { BASE_URL } from './const';
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Ошибка: ${res.statusText}`);
 
-export const register = (name, email, password ) => {
+export const register = (name, email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     credentials: 'include',
     method: 'POST',
@@ -26,7 +26,7 @@ export const authorize = (email, password) => {
 };
 
 export const signOut = () => {
-  return fetch(`${BASE_URL}/signout`, {
+  return fetch(`${BASE_URL}/users/`, {
     credentials: 'include',
     method: 'POST',
     headers: {
@@ -52,7 +52,7 @@ export const updateUserInfo = (email, name) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ email, name }),
+    body: JSON.stringify(email, name),
   }).then(checkResponse);
 };
 
@@ -66,7 +66,7 @@ export const getOwnerMovies = () => {
   }).then(checkResponse);
 };
 
-export const createMovie = (
+export const createMovie = ({
   country,
   director,
   duration,
@@ -77,8 +77,8 @@ export const createMovie = (
   nameRU,
   nameEN,
   thumbnail,
-  movieId
-) => {
+  movieId,
+}) => {
   return fetch(`${BASE_URL}/movies`, {
     credentials: 'include',
     method: 'POST',
@@ -86,6 +86,18 @@ export const createMovie = (
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
+      // country: country || 'no country',
+      // director,
+      // duration,
+      // year,
+      // description,
+      // image: `${BASE_URL}${image.url}`,
+      // trailerLink,
+      // nameRU,
+      // nameEN,
+      // // thumbnail,
+      // thumbnail: `${BASE_URL}${image.formats.thumbnail.url}`,
+      // movieId: movieId.id,
       country,
       director,
       duration,

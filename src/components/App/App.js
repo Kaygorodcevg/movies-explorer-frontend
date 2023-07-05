@@ -9,9 +9,10 @@ import Register from '../Register/Register';
 import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import NotFound from '../NotFound/NotFound';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 // import Preloader from '../Preloader/Preloader';
+import { SUCCESS, BAD_REQUEST } from '../../utils/const';
+import { MOVIE_URL } from '../../utils/const';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -19,25 +20,65 @@ import * as mainApi from '../../utils/MainApi';
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [savedCards, setSavedCards] = useState({});
-
   const [loggedIn, setLoggedIn] = useState(false);
+
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isError, setIsError] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState({
+    showMessage: false,
+    text: '',
+    serverCode: SUCCESS,
+  });
+  const navigate = useNavigate();
   // const [isLoading, setLoading] = useState(false);
   // const [preloader, setPreloader] = useState(false);
-  const [message, setMessage] = useState({ text: '' });
-  const navigate = useNavigate();
-
   useEffect(() => {
-    mainApi.getUserInfo()
-      .then(data => {
+    mainApi
+      .getUserInfo()
+      .then((data) => {
         setLoggedIn(true);
         setCurrentUser(data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
-      })
+      });
   }, [loggedIn]);
 
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getOwnerMovies()
+        .then((data) => {
+          setSavedMovies(data);
+          setIsError(false);
+        })
+        .catch((err) => {
+          setIsError(true);
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
+
+  const handleUpdateUser = async (email, name) => {
+    try {
+      const data = await mainApi.updateUserInfo(email, name);
+      if (data) {
+        setCurrentUser(data);
+        setErrorMessage({
+          showMessage: true,
+          // showMessage: 'Данные успешно обновлены',
+        });
+      }
+    } catch ({ err, code }) {
+      setErrorMessage({
+        showMessage: true,
+        text: 'При обновлении профиля произошла ошибка.',
+        // err,
+        serverCode: code,
+      });
+    }
+  };
 
   const handleAutorization = useCallback(
     async (password, email) => {
@@ -47,11 +88,13 @@ function App() {
           setLoggedIn(true);
           navigate('/movies', { replace: true });
         }
-      } catch (err) {
-        setMessage({
-          text: 'Что-то пошло не так! Попробуйте ещё раз.',
+      } catch ({ err, code }) {
+        setErrorMessage({
+          showMessage: true,
+          text: 'Вы ввели неправильный логин или пароль.',
+          // err,
+          serverCode: code,
         });
-        console.log(err);
       }
     },
     [navigate]
@@ -62,14 +105,16 @@ function App() {
       try {
         const data = await mainApi.register(email, password, name);
         if (data) {
-          handleAutorization(password, data.email );
+          handleAutorization(password, data.email);
           navigate('/movies', { replace: true });
         }
-      } catch (err) {
-        setMessage({
-          text: 'Что-то пошло не так! Попробуйте ещё раз.',
+      } catch ({ err, code }) {
+        setErrorMessage({
+          showMessage: true,
+          text: 'При регистрации пользователя произошла ошибка.',
+          // err,
+          serverCode: code,
         });
-        console.log(err);
       }
     },
     [handleAutorization, navigate]
@@ -81,6 +126,7 @@ function App() {
       if (data) {
         setLoggedIn(false);
         setCurrentUser({});
+        localStorage.clear();
         navigate('/', { replace: true });
       }
     } catch (err) {
@@ -88,90 +134,107 @@ function App() {
     }
   }, [navigate]);
 
-  const handleUpdateUser = async (email, name) => {
-    try {
-      const data = await mainApi.updateUserInfo(email, name);
-      if (data) {
-        setCurrentUser(data);
-      }
-    } catch (err) {
-      setMessage({
-        text: 'Что-то пошло не так! Попробуйте ещё раз.',
+  function handleSaveMovie(movie) {
+    mainApi
+      .createMovie({
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: `${MOVIE_URL}${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
+        thumbnail: `${MOVIE_URL}${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+      })
+      .then((newMovie) => {
+        setSavedMovies([newMovie, ...savedMovies]);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleDeleteMovie(movie) {
+    mainApi
+      .deleteMovie(movie._id)
+      .then(() => {
+        const newMoviesList = savedMovies.filter(
+          (card) => card._id !== movie._id
+        );
+        setSavedMovies(newMoviesList);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function resetServerMessages() {
+    if (errorMessage.showMessage) {
+      setErrorMessage({
+        showMessage: true,
+        text: '',
+        serverCode: SUCCESS,
       });
     }
-  };
-
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     mainApi
-  //       .getOwnerMovies()
-  //       .then((data) => {
-  //         setSavedCards(data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [loggedIn]);
-
-    // preloader ? (
+  }
+  // preloader ? (
   //   <Preloader />
-  // ) : 
+  // ) :
 
   return (
-    <div className='App'>
+    <div
+      className='App'
+      onClick={errorMessage.showMessage ? resetServerMessages : null}
+    >
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} />
 
         <Routes>
           <Route
             path='/'
-            exact
             element={<Main />}
           />
 
           <Route
             path='/movies'
-            // element={<Movies movies={movies} onSearch={handleGetAllMovies}/>}
-            element={<Movies />}
-            // element={
-            //   <ProtectedRoute
-            //     element={Movies}
-            //     onSearch={handleGetAllMovies}
-            //     loggedIn={loggedIn}
-            //   />
-            // }
+            element={
+              <ProtectedRoute
+                element={Movies}
+                savedMoviesList={savedMovies}
+                onLikeClick={handleSaveMovie}
+                onDeleteClick={handleDeleteMovie}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route
-            path='/saved-movies'     element={<SavedMovies />}
-            // element={
-            //   <ProtectedRoute
-            //     element={SavedMovies}
-            //     cards={savedCards}
-            //     loggedIn={loggedIn}
-            //   />
-            // }
+            path='/saved-movies'
+            element={
+              <ProtectedRoute
+                element={SavedMovies}
+                list={savedMovies}
+                onDeleteClick={handleDeleteMovie}
+                isError={isError}
+                loggedIn={loggedIn}
+              />
+            }
           />
           <Route
             path='/profile'
-            element={<Profile />}
-            // element={
-            //   <ProtectedRoute
-            //     element={Profile}
-            //     onUpdateUser={handleUpdateUser}
-            //     loggedIn={loggedIn}
-            //     onLogout={handleLogout}
-            //     message={message}
-            //     // setMessage={setMessage}
-            //   />
-            // }
+            element={
+              <ProtectedRoute
+                element={Profile}
+                onUpdateUser={handleUpdateUser}
+                loggedIn={loggedIn}
+                onSignOut={handleLogout}
+                message={errorMessage}
+              />
+            }
           />
           <Route
             path='/signin'
             element={
               <Login
-                message={message}
-                // setMessage={setMessage}
+                message={errorMessage}
                 onLogin={handleAutorization}
                 loggedIn={loggedIn}
               />
@@ -181,8 +244,7 @@ function App() {
             path='/signup'
             element={
               <Register
-                message={message}
-                // setMessage={setMessage}
+                message={errorMessage}
                 onRegister={handleRegistration}
                 loggedIn={loggedIn}
               />

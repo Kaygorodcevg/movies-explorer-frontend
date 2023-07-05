@@ -5,7 +5,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import { filterMovies, filterShortMovies } from '../../utils/filterMovies';
 import * as moviesApi from '../../utils/MoviesApi';
 
-function Movies() {
+function Movies({savedMoviesList, onLikeClick, onDeleteClick}) {
 
   //   localStorage.getItem('shortFilms') === 'on' ? 'on' : 'off';
 
@@ -13,6 +13,9 @@ function Movies() {
   const [shortFilms, setShortFilms] = useState(false);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [movies, setMovies] = useState([]);
+
+  const [isCardsNotFound, setCardsNotFound] = useState(false);
+  const [isError, setIsError] = useState(false);
 
 
   function handleSetFilteredMovies(movies, query, checkbox) {
@@ -32,9 +35,10 @@ function Movies() {
         .getMovies()
         .then((data) => {
           setMovies(data);
-          handleSetFilteredMovies(movies, item, shortFilms);
+          handleSetFilteredMovies(data, item, shortFilms);
         })
         .catch((err) => {
+          setIsError(true);
           console.log(err);
         });
     } else {
@@ -70,7 +74,14 @@ function Movies() {
         onCheckbox={handleCheckbox}
         shortFilms={shortFilms}
       />
-      <MoviesCardList list={filteredMovies} />
+      <MoviesCardList 
+      list={filteredMovies} 
+      isCardsNotFound ={isCardsNotFound}
+      isError={isError}
+      onLike={onLikeClick}
+      onDelete={onDeleteClick}
+      savedFilms={savedMoviesList}
+      />
     </main>
   );
 }

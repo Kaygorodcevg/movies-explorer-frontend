@@ -29,8 +29,6 @@ function AuthForm({
       <form
         className='auth__form'
         onSubmit={handleSubmit}
-        // isValid={isValid}
-        // message={message}
       >
         {name === 'signup' && (
           <label className='auth__label'>
@@ -90,10 +88,8 @@ function AuthForm({
           <span className='auth__input-error'>{errors.password || ''}</span>
         </label>
 
-        <ErrorMessage
-          place={name}
-          message={message}
-        />
+        <ErrorMessage {...message} />
+
         <button
           className={`auth__submit-button ${
             isValid ? 'hover-button' : 'auth__submit-button_disabled'

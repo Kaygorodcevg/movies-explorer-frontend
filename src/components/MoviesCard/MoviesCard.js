@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import { MOVIE_URL } from "../../utils/const";
 
-function MoviesCard({card}) {
+function MoviesCard({card, onLike, onDelete, liked, savedPage}) {
   const location = useLocation();
 
   function getTimeFromMins(mins) {
@@ -12,15 +12,18 @@ function MoviesCard({card}) {
     return `${hours}ч ${minutes}м`;
   }
 
-  const [isLiked, setLike] = useState(false);
+  // const [isLiked, setLike] = useState(false);
 
   function handleCardLike() {
-    setLike(!isLiked);
+    onLike(card);
   }
 
-  const cardLikeButtonClassName = `movie__like hover-button ${
-    isLiked ? 'movie__like_active' : ''
-  }`;
+  function handleCardDelete() {
+    onDelete(card);
+  }
+  // const cardLikeButtonClassName = `movie__like hover-button ${
+  //   isLiked ? 'movie__like_active' : ''
+  // }`;
 
   return (
     <section className='movie'>
@@ -35,9 +38,19 @@ function MoviesCard({card}) {
       />
       <div className='movie__header'>
         <h2 className='movie__title'>{card.nameRU}</h2>
-        {location.pathname === '/movies' ? (
+        <button
+          className={`hover-button
+          ${savedPage ? 'movie__like-delete' : 'movie__like'} 
+          ${liked && !savedPage ? 'movie__like_active' : ''}`}
+          type='button'
+          aria-label='Сохранить в избранное'
+          onClick={savedPage || liked ? handleCardDelete : handleCardLike}
+        />
+        {/* {location.pathname === '/movies' ? (
           <button
-            className={cardLikeButtonClassName}
+            className={`movie__like hover-button ${
+              liked ? 'movie__like_active' : ''
+              }`}
             type='button'
             onClick={handleCardLike}
           ></button>
@@ -45,8 +58,9 @@ function MoviesCard({card}) {
           <button
             className='movie__like-delete hover-button'
             type='button'
+            onClick={handleCardDelete}
           ></button>
-        )}
+        )} */}
       </div>
       <p className='movie__duration'>{getTimeFromMins(card.duration)}</p>
     </section>
