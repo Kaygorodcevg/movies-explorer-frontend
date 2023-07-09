@@ -1,6 +1,7 @@
-import { useCallback, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import useWindowWidth from '../../hooks/useWindowWidth';
+import Preloader from '../Preloader/Preloader';
 
 function MoviesCardList({
   list,
@@ -10,6 +11,8 @@ function MoviesCardList({
   onDelete,
   savedFilmsPage,
   savedFilms,
+  isLoading,
+  isEmpty,
 }) {
   const width = useWindowWidth();
   const [cardsForRender, setCardsForRender] = useState([]);
@@ -61,7 +64,6 @@ function MoviesCardList({
       return (
         <MoviesCard
           key={card.id}
-          // card={card}
           card={{ ...card, _id: likedId }}
           onLike={onLike}
           onDelete={onDelete}
@@ -84,25 +86,41 @@ function MoviesCardList({
 
   return (
     <section className='movies-list'>
-      <>
-        <div className='movies-list__table'>
-          {savedFilmsPage ? getSavedMovieList() : getMovieList()}
-        </div>
-        <button
-          className={`movies-list__more-btn hover-button
-          ${
-            (savedFilmsPage ||
-              isCardsNotFound ||
-              cardsForRender.length === list.length) &&
-            'movies-list__more-btn_hidden'
+      {isLoading ? (
+        <Preloader />
+      ) : isEmpty || isError ? (
+        <p
+          className={`movies-list__message ${
+            isError && 'movies-list__message_type_err'
           }`}
-          type='button'
-          aria-label='Показать еще'
-          onClick={handleMoreButtonClick}
         >
-          Ещё
-        </button>
-      </>
+          {isError
+            ? `Во время запроса произошла ошибка. 
+              Возможно, проблема с соединением или сервер недоступен.
+              Подождите немного и попробуйте ещё раз.`
+            : 'По такому запросу ничего не найдено :( '}
+        </p>
+      ) : (
+        <>
+          <div className='movies-list__table'>
+            {savedFilmsPage ? getSavedMovieList() : getMovieList()}
+          </div>
+          <button
+            className={`movies-list__more-btn hover-button
+        ${
+          (savedFilmsPage ||
+            isCardsNotFound ||
+            cardsForRender.length === list.length) &&
+          'movies-list__more-btn_hidden'
+        }`}
+            type='button'
+            aria-label='Показать еще'
+            onClick={handleMoreButtonClick}
+          >
+            Ещё
+          </button>
+        </>
+      )}
     </section>
   );
 }

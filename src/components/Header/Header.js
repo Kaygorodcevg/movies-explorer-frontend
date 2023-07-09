@@ -3,7 +3,7 @@ import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 import Burger from '../Burger/Burger';
 
-function Header({loggedIn}) {
+function Header({ loggedIn }) {
   return (
     <Routes>
       <Route
@@ -16,7 +16,7 @@ function Header({loggedIn}) {
         element={
           <header className='header'>
             <Logo />
-            <Navigation loggedIn={loggedIn}/>
+            <Navigation loggedIn={loggedIn} />
           </header>
         }
       ></Route>

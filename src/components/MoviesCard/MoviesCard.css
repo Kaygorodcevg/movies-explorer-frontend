@@ -11,14 +11,15 @@
   display: block;
   object-fit: cover;
   overflow: hidden;
-  /* width: 364px; */
   height: 203px;
   width: 100%;
+  border-radius: 6px 6px 0 0;
 }
 
 .movie__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 9px 16px 10px 16px;
 }
 
@@ -27,8 +28,6 @@
   font-size: 13px;
   line-height: 16px;
   margin: 0 21px 0 0;
-  display: flex;
-  align-items: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

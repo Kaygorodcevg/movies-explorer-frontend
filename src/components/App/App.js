@@ -10,8 +10,7 @@ import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 import NotFound from '../NotFound/NotFound';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-// import Preloader from '../Preloader/Preloader';
-import { SUCCESS, BAD_REQUEST } from '../../utils/const';
+import { SUCCESS } from '../../utils/const';
 import { MOVIE_URL } from '../../utils/const';
 
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -21,18 +20,15 @@ import * as mainApi from '../../utils/MainApi';
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-
   const [savedMovies, setSavedMovies] = useState([]);
   const [isError, setIsError] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState({
     showMessage: false,
     text: '',
     serverCode: SUCCESS,
   });
   const navigate = useNavigate();
-  // const [isLoading, setLoading] = useState(false);
-  // const [preloader, setPreloader] = useState(false);
+
   useEffect(() => {
     mainApi
       .getUserInfo()
@@ -66,17 +62,17 @@ function App() {
       if (data) {
         setCurrentUser(data);
         setErrorMessage({
+          ...errorMessage,
           showMessage: true,
-          // showMessage: 'Данные успешно обновлены',
+          text: 'Данные успешно обновлены',
         });
       }
-    } catch ({ err, code }) {
+    } catch (err) {
       setErrorMessage({
         showMessage: true,
-        text: 'При обновлении профиля произошла ошибка.',
-        // err,
-        serverCode: code,
+        text: 'При обновлении профиля произошла ошибка',
       });
+      console.log(err);
     }
   };
 
@@ -88,13 +84,12 @@ function App() {
           setLoggedIn(true);
           navigate('/movies', { replace: true });
         }
-      } catch ({ err, code }) {
+      } catch (err) {
         setErrorMessage({
           showMessage: true,
           text: 'Вы ввели неправильный логин или пароль.',
-          // err,
-          serverCode: code,
         });
+        console.log(err);
       }
     },
     [navigate]
@@ -108,13 +103,12 @@ function App() {
           handleAutorization(password, data.email);
           navigate('/movies', { replace: true });
         }
-      } catch ({ err, code }) {
+      } catch (err) {
         setErrorMessage({
           showMessage: true,
           text: 'При регистрации пользователя произошла ошибка.',
-          // err,
-          serverCode: code,
         });
+        console.log(err);
       }
     },
     [handleAutorization, navigate]
@@ -176,9 +170,6 @@ function App() {
       });
     }
   }
-  // preloader ? (
-  //   <Preloader />
-  // ) :
 
   return (
     <div

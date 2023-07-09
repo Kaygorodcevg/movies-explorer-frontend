@@ -89,8 +89,8 @@
   width: 410px;
   height: 45px;
   border-radius: 3px;
-  color: #FFF;
-  background-color: #2BE080;
+  color: #fff;
+  background-color: #2be080;
   border: none;
   margin: 0 0 16px 0;
 }
@@ -127,6 +127,11 @@
   .profile__button_type_change {
     margin: 0 0 16px 0;
   }
+
+  .profile__button_type_save {
+    width: 396px;
+    height: 45px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -159,5 +164,10 @@
   .profile__button-link {
     font-size: 12px;
     line-height: 15px;
+  }
+
+  .profile__button_type_save {
+    width: 260px;
+    height: 45px;
   }
 }

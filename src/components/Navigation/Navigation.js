@@ -22,10 +22,9 @@ function Navigation() {
                 Войти
               </Link>
             </div>
-  }
+          }
         ></Route>
-
-      </Routes> 
+      </Routes>
     </nav>
   );
 }

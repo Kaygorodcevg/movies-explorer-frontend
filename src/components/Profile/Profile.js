@@ -50,6 +50,7 @@ function Profile({ onSignOut, onUpdateUser, message }) {
           <input
             id='name'
             name='name'
+            pattern='^[A-Za-zА-Яа-яЁё\\-\\s]+$'
             type='text'
             className='profile__input'
             minLength='2'

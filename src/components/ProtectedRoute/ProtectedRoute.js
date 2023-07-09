@@ -5,7 +5,10 @@ const ProtectedRoute = ({ element: Component, ...props }) => {
   return props.loggedIn ? (
     <Component {...props} />
   ) : (
-    <Navigate to="/" replace />
+    <Navigate
+      to='/movies'
+      replace
+    />
   );
 };
 

@@ -1,4 +1,4 @@
-import { MOVIE_URL } from "./const";
+import { MOVIE_URL } from './const';
 
 const checkResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Ошибка: ${res.statusText}`);

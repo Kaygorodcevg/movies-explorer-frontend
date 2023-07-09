@@ -25,7 +25,7 @@ function Burger() {
       >
         <NavLink
           to='/'
-          className='menu__main hover-link'
+          className={'menu__main hover-link'}
           onClick={handleClickMenu}
         >
           Главная
@@ -34,14 +34,22 @@ function Burger() {
         <div className='menu__films'>
           <NavLink
             to='/movies'
-            className='menu__films-all hover-link'
+            className={({ isActive }) =>
+              isActive
+                ? 'menu__link_active menu__films-all hover-link'
+                : 'menu__films-all hover-link'
+            }
             onClick={handleClickMenu}
           >
             Фильмы
           </NavLink>
           <NavLink
             to='/saved-movies'
-            className='menu__films-saved hover-link'
+            className={({ isActive }) =>
+              isActive
+                ? 'menu__link_active menu__films-saved hover-link'
+                : 'menu__films-saved hover-link'
+            }
             onClick={handleClickMenu}
           >
             Сохраненные фильмы
@@ -50,7 +58,7 @@ function Burger() {
 
         <NavLink
           to='/profile'
-          className='menu__account hover-link'
+          className={'menu__account hover-link'}
           onClick={handleClickMenu}
         >
           Аккаунт

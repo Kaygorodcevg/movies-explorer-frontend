@@ -6,11 +6,9 @@ function useWindowWidth() {
 
   useEffect(() => {
     let timer;
-
     function handleScreenResize() {
       setScreenWidth(getWindowWidth());
     }
-
     window.addEventListener('resize', handleSetTimeout);
 
     function handleSetTimeout() {

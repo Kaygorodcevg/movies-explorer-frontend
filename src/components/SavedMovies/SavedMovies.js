@@ -5,7 +5,7 @@ import { filterMovies } from '../../utils/filterMovies';
 
 function SavedMovies({ list, onDeleteClick, isError }) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [shortFilms, setShortFilms] = useState(false);
+  const [shortFilms, setShortFilms] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState(list);
   const [isCardsNotFound, setCardsNotFound] = useState(false);
 
@@ -15,15 +15,18 @@ function SavedMovies({ list, onDeleteClick, isError }) {
     setFilteredMovies(filtredList);
   }
 
-  const handleCheckbox = (event) => {
-    setShortFilms(event.target.checked);
-    // localStorage.setItem('shortFilms', event.target.checked);
-  };
+  const handleCheckbox = useCallback(() => {
+    setShortFilms(!shortFilms);
+  }, [shortFilms]);
 
   useEffect(() => {
     const filtredList = filterMovies(list, searchQuery, shortFilms);
     setFilteredMovies(filtredList);
     if (searchQuery) {
+      filtredList.length === 0
+        ? setCardsNotFound(true)
+        : setCardsNotFound(false);
+    } else if (!searchQuery) {
       filtredList.length === 0
         ? setCardsNotFound(true)
         : setCardsNotFound(false);
@@ -34,14 +37,14 @@ function SavedMovies({ list, onDeleteClick, isError }) {
     <main className='saved-movies'>
       <SearchForm
         onSearchClick={handleSearchSubmit}
-        onCheckbox={handleCheckbox}
-        shortFilms={shortFilms}
+        onCheckbox={shortFilms}
+        shortFilms={handleCheckbox}
         savedFilmsPage={true}
       />
       <MoviesCardList
         list={filteredMovies}
         onDelete={onDeleteClick}
-        isCardsNotFound={isCardsNotFound}
+        isEmpty={isCardsNotFound}
         isError={isError}
         savedFilmsPage={true}
       />
