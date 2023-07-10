@@ -26,7 +26,8 @@ function SavedMovies({ list, onDeleteClick, isError }) {
       filtredList.length === 0
         ? setCardsNotFound(true)
         : setCardsNotFound(false);
-    } else if (!searchQuery) {
+    } 
+    else if (!searchQuery) {
       filtredList.length === 0
         ? setCardsNotFound(true)
         : setCardsNotFound(false);

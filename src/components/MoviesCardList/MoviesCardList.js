@@ -5,7 +5,6 @@ import Preloader from '../Preloader/Preloader';
 
 function MoviesCardList({
   list,
-  isCardsNotFound,
   isError,
   onLike,
   onDelete,
@@ -88,7 +87,9 @@ function MoviesCardList({
     <section className='movies-list'>
       {isLoading ? (
         <Preloader />
-      ) : isEmpty || isError ? (
+      ) : 
+       (isEmpty  ||
+        isError ? (
         <p
           className={`movies-list__message ${
             isError && 'movies-list__message_type_err'
@@ -109,7 +110,7 @@ function MoviesCardList({
             className={`movies-list__more-btn hover-button
         ${
           (savedFilmsPage ||
-            isCardsNotFound ||
+            isEmpty ||
             cardsForRender.length === list.length) &&
           'movies-list__more-btn_hidden'
         }`}
@@ -120,7 +121,8 @@ function MoviesCardList({
             Ещё
           </button>
         </>
-      )}
+      ))
+      }
     </section>
   );
 }

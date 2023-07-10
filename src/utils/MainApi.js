@@ -26,7 +26,7 @@ export const authorize = (email, password) => {
 };
 
 export const signOut = () => {
-  return fetch(`${BASE_URL}/users/`, {
+  return fetch(`${BASE_URL}/users`, {
     credentials: 'include',
     method: 'POST',
     headers: {
