@@ -12,9 +12,12 @@ function SearchForm({ onSearchClick, shortFilms, onCheckbox, savedFilmsPage }) {
 
   useEffect(() => {
     if (!savedFilmsPage) {
-      const input = localStorage.getItem('searchQuery');
+      const input = localStorage.getItem('moviesSearchQuery');
       if (input) {
         setValues({ search: input });
+        setIsValid(true);
+      } else if (savedFilmsPage) {
+        setValues({ search: input});
         setIsValid(true);
       }
     }
@@ -25,6 +28,7 @@ function SearchForm({ onSearchClick, shortFilms, onCheckbox, savedFilmsPage }) {
       <form
         className='search-form__form'
         onSubmit={handleSubmit}
+        noValidate
       >
         <input
           type='text'
@@ -36,11 +40,13 @@ function SearchForm({ onSearchClick, shortFilms, onCheckbox, savedFilmsPage }) {
           onChange={handleChange}
         />
         <span className='search-form__error'>
-          {errors.search ? 'Нужно ввести ключевое слово' : ''}
+          { errors.search ? 'Нужно ввести ключевое слово' : ''}
         </span>
         <button
-          className='search-form__button hover-button'
           disabled={!isValid}
+          className={`search-form__button ${
+            isValid ? 'hover-button' : 'auth__submit-button_disabled'
+          }`}
         ></button>
       </form>
 

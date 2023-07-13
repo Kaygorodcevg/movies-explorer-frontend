@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 function Login({ onLogin, loggedIn, message }) {
   return loggedIn ? (
     <Navigate
-      to='/movies'
+      to='/'
       replace
     />
   ) : (

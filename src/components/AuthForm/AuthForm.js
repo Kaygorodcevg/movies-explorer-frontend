@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { REGEX } from '../../utils/const';
 
 function AuthForm({
   name,
@@ -40,9 +41,9 @@ function AuthForm({
               className='auth__input'
               placeholder='Введите имя'
               minLength='2'
-              maxLength='40'
+              maxLength='50'
               required
-              pattern='^[A-Za-zА-Яа-яЁё\\-\\s]+$'
+              pattern={REGEX}
               value={values.name || ''}
               onChange={handleChange}
             />
@@ -64,7 +65,7 @@ function AuthForm({
             className='auth__input'
             placeholder='Email'
             minLength='8'
-            maxLength='40'
+            maxLength='50'
             required
             value={values.email || ''}
             onChange={handleChange}

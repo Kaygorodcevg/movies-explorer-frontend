@@ -1,15 +1,9 @@
 import { useLocation } from 'react-router-dom';
-
 import { MOVIE_URL } from '../../utils/const';
+import { getTimeFromMins } from "../../utils/const";
 
 function MoviesCard({ card, onLike, onDelete, liked, savedPage }) {
   const location = useLocation();
-
-  function getTimeFromMins(mins) {
-    let hours = Math.trunc(mins / 60);
-    let minutes = mins % 60;
-    return `${hours}ч ${minutes}м`;
-  }
 
   function handleCardLike() {
     onLike(card);

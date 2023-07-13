@@ -1,13 +1,10 @@
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import Burger from '../Burger/Burger';
 
-function Navigation() {
-  return (
+function Navigation({ loggedIn }) {
+  return loggedIn ? ( <Burger loggedIn={loggedIn} />) :
+  (
     <nav className='navigation'>
-      <Routes>
-        <Route
-          exact
-          path='/'
-          element={
             <div className='navigation__link'>
               <Link
                 to='signup'
@@ -22,9 +19,6 @@ function Navigation() {
                 Войти
               </Link>
             </div>
-          }
-        ></Route>
-      </Routes>
     </nav>
   );
 }

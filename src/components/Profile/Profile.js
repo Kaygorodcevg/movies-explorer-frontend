@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { REGEX } from '../../utils/const';
 
 function Profile({ onSignOut, onUpdateUser, message }) {
   const currentUser = useContext(CurrentUserContext);
@@ -50,7 +51,7 @@ function Profile({ onSignOut, onUpdateUser, message }) {
           <input
             id='name'
             name='name'
-            pattern='^[A-Za-zА-Яа-яЁё\\-\\s]+$'
+            pattern={REGEX}
             type='text'
             className='profile__input'
             minLength='2'

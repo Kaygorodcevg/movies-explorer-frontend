@@ -4,11 +4,6 @@ function Footer() {
   return (
     <Routes>
       <Route
-        path='*'
-        element={<></>}
-      />
-
-      <Route
         exact
         path='/'
         element={

@@ -31,13 +31,19 @@ function MoviesCardList({
   }, [width]);
 
   useEffect(() => {
-    if (list.length && !savedFilmsPage) {
+    if (  !savedFilmsPage && list.length) {
       const result = list.filter(
         (card, index) => index < cardsRenderWithParams.total
       );
       setCardsForRender(result);
     }
   }, [cardsRenderWithParams.total, list, savedFilmsPage]);
+
+  useEffect(() => {
+    if (savedFilmsPage) {
+      setCardsForRender(list);
+    }
+  }, [savedFilmsPage, list]);
 
   function handleMoreButtonClick() {
     const start = cardsForRender.length;

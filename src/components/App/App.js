@@ -16,8 +16,10 @@ import { MOVIE_URL } from '../../utils/const';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import * as mainApi from '../../utils/MainApi';
+import * as moviesApi from '../../utils/MoviesApi';
 
 function App() {
+  const [isLoading, setIsLoaging] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
@@ -39,21 +41,6 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [loggedIn]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      mainApi
-        .getOwnerMovies()
-        .then((data) => {
-          setSavedMovies(data);
-          setIsError(false);
-        })
-        .catch((err) => {
-          setIsError(true);
-          console.log(err);
-        });
-    }
   }, [loggedIn]);
 
   const handleUpdateUser = async (email, name) => {
@@ -96,11 +83,11 @@ function App() {
   );
 
   const handleRegistration = useCallback(
-    async (email, password, name) => {
+    async (name, email, password) => {
       try {
-        const data = await mainApi.register(email, password, name);
+        const data = await mainApi.register(name, email, password);
         if (data) {
-          handleAutorization(password, data.email);
+          handleAutorization(data.email, password);
           navigate('/movies', { replace: true });
         }
       } catch (err) {
@@ -161,6 +148,38 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  const handleGetAllMovies = useCallback(async () => {
+    setIsLoaging(true);
+    try {
+      const data = await moviesApi.getMovies();
+      if (data) {
+        return data;
+      }
+    } catch (err) {
+      setIsError(true);
+      console.error(err);
+    } finally {
+      setIsLoaging(false);
+    }
+  }, []);
+
+  const handleGetOwnerMovies = useCallback(async () => {
+    try {
+      const data = await mainApi.getOwnerMovies();
+      if (data) {
+        setSavedMovies(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      handleGetOwnerMovies();
+    }
+  }, [loggedIn, handleGetOwnerMovies]);
+
   function resetServerMessages() {
     if (errorMessage.showMessage) {
       setErrorMessage({
@@ -184,16 +203,17 @@ function App() {
             path='/'
             element={<Main />}
           />
-
           <Route
             path='/movies'
             element={
               <ProtectedRoute
                 element={Movies}
+                loggedIn={loggedIn}
                 savedMoviesList={savedMovies}
                 onLikeClick={handleSaveMovie}
                 onDeleteClick={handleDeleteMovie}
-                loggedIn={loggedIn}
+                onSearch={handleGetAllMovies}
+                isLoading={isLoading}
               />
             }
           />
@@ -202,10 +222,10 @@ function App() {
             element={
               <ProtectedRoute
                 element={SavedMovies}
+                loggedIn={loggedIn}
                 list={savedMovies}
                 onDeleteClick={handleDeleteMovie}
                 isError={isError}
-                loggedIn={loggedIn}
               />
             }
           />
@@ -214,8 +234,8 @@ function App() {
             element={
               <ProtectedRoute
                 element={Profile}
-                onUpdateUser={handleUpdateUser}
                 loggedIn={loggedIn}
+                onUpdateUser={handleUpdateUser}
                 onSignOut={handleLogout}
                 message={errorMessage}
               />

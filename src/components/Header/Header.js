@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
-import Burger from '../Burger/Burger';
 
 function Header({ loggedIn }) {
   return (
@@ -10,6 +9,7 @@ function Header({ loggedIn }) {
         path='*'
         element={<></>}
       />
+
       <Route
         exact
         path='/'
@@ -27,7 +27,7 @@ function Header({ loggedIn }) {
         element={
           <header className='header'>
             <Logo />
-            <Burger />
+            <Navigation loggedIn={loggedIn} />
           </header>
         }
       ></Route>
@@ -38,7 +38,7 @@ function Header({ loggedIn }) {
         element={
           <header className='header'>
             <Logo />
-            <Burger />
+            <Navigation loggedIn={loggedIn} />
           </header>
         }
       ></Route>
@@ -49,7 +49,7 @@ function Header({ loggedIn }) {
         element={
           <header className='header'>
             <Logo />
-            <Burger />
+            <Navigation loggedIn={loggedIn} />
           </header>
         }
       ></Route>
@@ -57,8 +57,9 @@ function Header({ loggedIn }) {
   );
 }
 
-// function Header({loggedIn}) {
-//   return loggedIn ? (
+// function Header({ loggedIn }) {
+//   return loggedIn ?
+//   (
 //     <Routes>
 //       <Route
 //         path='*'
@@ -70,13 +71,11 @@ function Header({ loggedIn }) {
 //         element={
 //           <header className='header'>
 //             <Logo />
-//             <Navigation loggedIn={loggedIn}/>
+//             <Navigation loggedIn={loggedIn} />
 //           </header>
 //         }
 //       ></Route>
-//     </Routes>
-//   ) : (
-//     <Routes>
+
 //       <Route
 //         exact
 //         path='/movies'
@@ -110,7 +109,21 @@ function Header({ loggedIn }) {
 //         }
 //       ></Route>
 //     </Routes>
-//   );
+//   ) :
+//   (
+//     <Routes>
+//     <Route
+//     exact
+//     path='/'
+//     element={
+//       <header className='header'>
+//         <Logo />
+//         <Navigation loggedIn={loggedIn} />
+//       </header>
+//     }
+//   ></Route>
+//   </Routes>
+//   )
 // }
 
 export default Header;

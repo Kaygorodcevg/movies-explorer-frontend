@@ -3,73 +3,89 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 import { filterMovies, filterShortMovies } from '../../utils/filterMovies';
-import * as moviesApi from '../../utils/MoviesApi';
 
-function Movies({ savedMoviesList, onLikeClick, onDeleteClick }) {
-  const [searchQuery, setSearchQuery] = useState('');
+function Movies({ isError, savedMoviesList, onLikeClick, onDeleteClick, onSearch, isLoading }) {
   const [shortFilms, setShortFilms] = useState(true);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [movies, setMovies] = useState([]);
   const [isCardsNotFound, setCardsNotFound] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [isLoading, setIsLoaging] = useState(false);
+  const [foundCards, setFoundCards] = useState([]);
 
-  function handleSetFilteredMovies(movies, search) {
-    const moviesList = filterMovies(movies, search);
-    localStorage.setItem('movies', JSON.stringify(moviesList));
-  }
+  const handleSetFilteredMovies = useCallback(
+    (movies, search) => {
+      const moviesList = filterMovies(movies, search, false);
+      setFoundCards(moviesList);
+      if (!moviesList.length) {
+        setCardsNotFound(true);
+        setFilteredMovies(moviesList);
+      } else {
+        const filtered = filterShortMovies(moviesList, shortFilms, false);
+        setFilteredMovies(filtered);
+        if (!filtered.length) {
+          setCardsNotFound(true);
+        }
+      }
+    },
+    [shortFilms]
+  );
 
-  function handleSearchSubmit(item) {
-    setIsLoaging(true);
-    setSearchQuery(item);
-    localStorage.setItem('searchQuery', item);
-    localStorage.setItem('shortFilms', shortFilms);
-    if (!movies.length) {
-      moviesApi
-        .getMovies()
-        .then((data) => {
+  const handleSearchSubmit = useCallback(
+    async (searchQuery) => {
+      setCardsNotFound(false);
+      if (!movies.length) {
+        const data = await onSearch();
+        if (data) {
           setMovies(data);
-          handleSetFilteredMovies(data, item, shortFilms);
-        })
-        .catch((err) => {
-          setIsError(true);
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoaging(false);
-        });
-    } else {
-      handleSetFilteredMovies(movies, item, shortFilms);
-      setIsLoaging(false);
-    }
-  }
+          handleSetFilteredMovies(data, searchQuery);
+        }
+      } else {
+        handleSetFilteredMovies(movies, searchQuery);
+      }
+    },
+    [handleSetFilteredMovies, movies, onSearch]
+  );
 
-  function handleChekMovies(arr) {
-    arr.length === 0 ? setCardsNotFound(true) : setCardsNotFound(false);
-  }
-
-  const handleCheckbox = useCallback(() => {
-    setShortFilms(!shortFilms);
-  }, [shortFilms]);
+  const handleCheckbox = useCallback(
+    (isChecked) => {
+      setShortFilms(isChecked);
+      setCardsNotFound(false);
+      const arr = filterShortMovies(foundCards, isChecked, false);
+      setFilteredMovies(arr);
+      if (!arr.length) {
+        setCardsNotFound(true);
+      }
+    },
+    [foundCards]
+  );
 
   useEffect(() => {
-    const arr = JSON.parse(localStorage.getItem('movies'));
-    if (arr && !searchQuery) {
-      setFilteredMovies(shortFilms === false ? filterShortMovies(arr) : arr);
-      handleChekMovies(arr);
-    } else if (searchQuery) {
-      const filterArr = filterMovies(movies, searchQuery, shortFilms);
-      setFilteredMovies(filterArr);
-      handleChekMovies(filterArr);
+    if (
+      localStorage.getItem("movies") &&
+      localStorage.getItem("isShortFilms")
+    ) {
+      const arr = JSON.parse(localStorage.getItem("isShortFilms"));
+      setShortFilms(arr);
+      const foundMovies = JSON.parse(localStorage.getItem("movies"));
+      setFoundCards(foundMovies);
+      if (!foundMovies.length) {
+        setCardsNotFound(true);
+        setFilteredMovies(foundMovies);
+      } else {
+        const filtered = filterShortMovies(foundMovies, arr, false);
+        setFilteredMovies(filtered);
+        if (!filtered.length) {
+          setCardsNotFound(true);
+        }
+      }
     }
-  }, [shortFilms, searchQuery, movies]);
+  }, []);
 
   return (
     <main className='movies'>
       <SearchForm
         onSearchClick={handleSearchSubmit}
-        onCheckbox={shortFilms}
         shortFilms={handleCheckbox}
+        onCheckbox={shortFilms}
       />
       <MoviesCardList
         list={filteredMovies}

@@ -6,7 +6,7 @@ const ProtectedRoute = ({ element: Component, ...props }) => {
     <Component {...props} />
   ) : (
     <Navigate
-      to='/movies'
+      to='/'
       replace
     />
   );
