@@ -3,7 +3,10 @@ import photo from '../../images/fVwssP9qdEk.jpg';
 
 function AboutMe() {
   return (
-    <section id = 'student' className='student'>
+    <section
+      id='student'
+      className='student'
+    >
       <h2 className='student__title'>Студент</h2>
 
       <div className='about-section'>

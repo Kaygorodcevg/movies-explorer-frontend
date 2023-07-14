@@ -4,7 +4,6 @@
 @import url('./components/AboutMe/AboutMe.css');
 @import url('./components/AboutProject/AboutProject.css');
 @import url('./components/App/App.css');
-@import url('./components/FilterCheckbox/FilterCheckbox.css');
 @import url('./components/Footer/Footer.css');
 @import url('./components/Header/Header.css');
 @import url('./components/Main/Main.css');
@@ -27,3 +26,4 @@
 @import url('./components/AuthForm/AuthForm.css');
 @import url('./components/NotFound/NotFound.css');
 @import url('./components/Common/СommonСomponent.css');
+@import url('./components/ErrorMessage/ErrorMessage.css');

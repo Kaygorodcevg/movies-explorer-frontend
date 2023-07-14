@@ -1,6 +1,7 @@
 # "Movies-explorer" frontend
-[**movies-explorer-frontend**]() (открыть проект в браузере)
+[**movies-explorer-frontend**](https://movie.project.nomoredomains.rocks/) (открыть проект в браузере)
 * [Ссылка на макет](https://drive.google.com/file/d/12kjxeUZt7fEsXL-4kVP80ygB87aWTr4S/view?usp=drive_link)
+* [Ссылка на пул реквест](https://github.com/Kaygorodcevg/movies-explorer-frontend/pull/2)
 
 ## Описание проекта
 Сервис, в котором можно найти фильмы по запросу и сохранить в личном кабинете.

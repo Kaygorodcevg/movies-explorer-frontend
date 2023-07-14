@@ -1,15 +1,22 @@
 import AuthForm from '../AuthForm/AuthForm';
+import { Navigate } from 'react-router-dom';
 
-function Login() {
-  return (
+function Login({ onLogin, loggedIn, message }) {
+  return loggedIn ? (
+    <Navigate
+      to='/'
+      replace
+    />
+  ) : (
     <AuthForm
-      link='/signup'
-      linkTo='/movies'
+      name='signin'
+      linkTo='/signup'
       title='Рады видеть!'
       buttonText='Войти'
       subtitle='Ещё не зарегистрированы?'
       linkName='Регистрация'
-      // onSubmit={handleSubmit}
+      onSubmit={onLogin}
+      message={message}
     ></AuthForm>
   );
 }
